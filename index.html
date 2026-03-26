@@ -33,23 +33,26 @@ tw-link:focus, tw-link:hover, tw-link:active, tw-link.visited:hover {
   color: yellow;
 }
 tw-passage {
-  padding-bottom: 200px;}</style><script role="script" id="twine-user-script" type="text/twine-javascript">window.onload = function () {
-    if (!document.getElementById("bg-music")) {
-        var audio = document.createElement("audio");
-        audio.id = "bg-music";
-        audio.loop = true;
-        audio.autoplay = true;
-        audio.volume = 0.5;
-        audio.setAttribute("preload", "auto");
+  padding-bottom: 200px;}</style><script role="script" id="twine-user-script" type="text/twine-javascript">$(document).one("tw:passageend", function () {
+    $(document).one("click keydown", function () {
+        if (!document.getElementById("bg-music")) {
+            var audio = document.createElement("audio");
+            audio.id = "bg-music";
+            audio.loop = true;
+            audio.volume = 0.5;
 
-        var source = document.createElement("source");
-        source.src = "./audio/";
-        source.type = "audio/mpeg";
+            var source = document.createElement("source");
+            source.src = "./audio/background.mp3";
+            source.type = "audio/mpeg";
+            audio.appendChild(source);
+            document.body.appendChild(audio);
 
-        audio.appendChild(source);
-        document.body.appendChild(audio);
-    }
-};</script><tw-passagedata pid="1" name="Delete Me" tags="" position="600,325" size="100,100">My fav colours are [[purple]] and [[green]] and [[yellow]]</tw-passagedata><tw-passagedata pid="2" name="purple" tags="" position="600,450" size="100,100">
+            audio.play().catch(function (e) {
+                console.warn("Audio play failed:", e);
+            });
+        }
+    });
+});</script><tw-passagedata pid="1" name="Delete Me" tags="" position="600,325" size="100,100">My fav colours are [[purple]] and [[green]] and [[yellow]]</tw-passagedata><tw-passagedata pid="2" name="purple" tags="" position="600,450" size="100,100">
 
 I dream of cats. (click-replace: &quot;cats&quot;) [horses]
 
